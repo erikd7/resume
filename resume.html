@@ -1,0 +1,422 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Erik Dietrich - Resume</title>
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Georgia&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+
+        --page-width: 8.5in;
+        --page-height: 11in;
+        --page-margin-vertical: 0.3in;
+        --page-margin-horizontal: 0.5in;
+        --sidebar-width: 3in;
+        --body-font: "Montserrat", sans-serif;
+        --header-font: Georgia, serif;
+        --body-font-size: 12px;
+        --section-heading-font-size: 24px;
+        --sidebar-name-font-size: 29px;
+        --sidebar-subtitle-font-size: 10px;
+        --job-title-font-size: 14px;
+        --job-meta-font-size: 11px;
+        --bullet-font-size: 10px;
+        --skill-group-header-font-size: 13px;
+        --skill-item-font-size: 12px;
+        --skill-bullet-font-size: 11px;
+        --page-background: #e5e7eb;
+        --page-surface: white;
+        --sidebar-bg: #10365c;
+        --sidebar-text: white;
+        --sidebar-muted-text: #d1d5db;
+        --sidebar-link-color: #93c5fd;
+        --sidebar-body-text: #e5e7eb;
+        --heading-border-color: #adadad33;
+        --main-text-color: #111;
+        --meta-text-color: #888888;
+        --bullet-character: "○";
+      }
+
+      /* PRINT SETUP */
+      @page {
+        size: letter;
+        margin: 0;
+      }
+
+      body {
+        margin: 0;
+        background: var(--page-background);
+        font-family: var(--body-font);
+        font-size: var(--body-font-size);
+        line-height: 1.42;
+      }
+
+      .page {
+        width: var(--page-width);
+        height: var(--page-height);
+        margin: auto;
+        display: grid;
+        grid-template-columns: var(--sidebar-width) 1fr;
+        background: var(--page-surface);
+        overflow-x: hidden;
+        overflow-y: hidden;
+      }
+
+      /* INNER SPACING */
+      .inner {
+        padding: var(--page-margin-vertical) var(--page-margin-horizontal);
+        box-sizing: border-box;
+      }
+
+      h2 {
+        font-family: var(--header-font);
+        font-size: var(--section-heading-font-size);
+        margin: 16px 0 6px;
+        border-bottom: 1px solid var(--heading-border-color);
+        padding-bottom: 3px;
+      }
+
+      /* SIDEBAR */
+      .sidebar {
+        background: var(--sidebar-bg);
+        color: var(--sidebar-text);
+      }
+
+      .sidebar h1 {
+        font-family: var(--header-font);
+        font-size: var(--sidebar-name-font-size);
+        margin: 0 0 6px;
+        text-align: center;
+      }
+
+      .sidebar .subtitle {
+        font-size: var(--sidebar-subtitle-font-size);
+        color: var(--sidebar-muted-text);
+        margin-bottom: 18px;
+        font-weight: 500;
+        text-align: center;
+      }
+
+      .subdivider {
+        text-align: center;
+        color: rgba(255, 255, 255, 0.2);
+        margin: 12px 0;
+      }
+
+      .sidebar p,
+      .sidebar a {
+        margin: 2px 0;
+        color: var(--sidebar-body-text);
+        text-decoration: none;
+      }
+
+      .sidebar a {
+        color: var(--sidebar-link-color);
+      }
+
+      .contact p {
+        text-align: center;
+      }
+
+      /* MAIN */
+      .main {
+        color: var(--main-text-color);
+      }
+
+      /* JOBS */
+      .job {
+        margin-top: 10px;
+      }
+
+      .job-header {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .job-title {
+        font-weight: 600;
+        font-size: var(--job-title-font-size);
+      }
+
+      .job-meta {
+        font-size: var(--job-meta-font-size);
+        color: var(--meta-text-color);
+      }
+
+      /* BULLETS (CRITICAL MATCH) */
+      .bullets {
+        margin-top: 6px;
+      }
+
+      .bullet {
+        position: relative;
+        padding-left: 16px;
+        margin-bottom: 4px;
+      }
+
+      .bullet::before {
+        content: var(--bullet-character);
+        position: absolute;
+        left: 0;
+        top: 0.2em;
+        font-size: var(--bullet-font-size);
+      }
+
+      /* SKILLS */
+      .skill-group {
+        margin-top: 6px;
+      }
+
+      .skill-group .skill-group-header {
+        font-weight: 600;
+        display: block;
+        font-size: var(--skill-group-header-font-size);
+        margin-top: 6px;
+      }
+
+      .skill-item {
+        position: relative;
+        padding-left: 14px;
+        font-size: var(--skill-item-font-size);
+        margin: 2px 0;
+      }
+
+      .skill-item::before {
+        content: var(--bullet-character);
+        position: absolute;
+        left: 0;
+        font-size: var(--skill-bullet-font-size);
+      }
+
+      a[href] {
+        text-decoration: underline;
+        color: unset;
+      }
+
+      /* PRINT FIXES */
+      @media print {
+        body {
+          background: none;
+        }
+
+        .page {
+          margin: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <!-- SIDEBAR -->
+      <div class="sidebar">
+        <div class="inner">
+          <h1 class="title">Erik Dietrich</h1>
+          <div class="subtitle">SENIOR SOFTWARE ENGINEER</div>
+          <div class="contact">
+            <p>Portland, ME</p>
+            <p>(724) 799-4475</p>
+            <p>
+              <a
+                href="mailto:erik@edietrich.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                erik@edietrich.com
+              </a>
+            </p>
+          </div>
+          <h2>Links</h2>
+          <p>
+            <a
+              href="https://github.com/erikd7"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              github.com/erikd7
+            </a>
+          </p>
+          <p>
+            <a
+              href="https://portfolio.edietrich.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              portfolio.edietrich.com
+            </a>
+          </p>
+          <p>
+            <a
+              href="https://linkedin.com/in/erik-b-dietrich"
+              target="_blank"
+              rel="noopener noreferrer"
+              >linkedin.com/in/erik-b-dietrich</a
+            >
+          </p>
+          <h2>Education</h2>
+          <p>BS Systems Engineering</p>
+          <p>Magna Cum Laude</p>
+          <p>Virginia Tech</p>
+          <h2>Skills</h2>
+          <div class="skill-group">
+            <div class="skill-group-header">Frontend:</div>
+            <div class="skill-item">React</div>
+            <div class="skill-item">Vue</div>
+            <div class="skill-item">JavaScript</div>
+            <div class="skill-item">TypeScript</div>
+            <div class="skill-item">CSS</div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-header">Backend:</div>
+            <div class="skill-item">Node.js</div>
+            <div class="skill-item">REST APIs</div>
+            <div class="skill-item">SQL (PostgreSQL, SQL Server)</div>
+            <div class="skill-item">Prisma</div>
+            <div class="skill-item">MongoDB</div>
+            <div class="skill-item">Java</div>
+            <div class="skill-item">Python</div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-header">Infrastructure:</div>
+            <div class="skill-item">AWS</div>
+            <div class="skill-item">Docker</div>
+            <div class="skill-item">Kubernetes</div>
+            <div class="skill-item">Terraform</div>
+            <div class="skill-item">CI/CD</div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-header">Testing:</div>
+            <div class="skill-item">Unit Testing (Jest)</div>
+            <div class="skill-item">E2E Testing (Playwright)</div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-header">Methodologies:</div>
+            <div class="skill-item">Agile</div>
+            <div class="skill-item">Scrum</div>
+          </div>
+        </div>
+      </div>
+      <!-- MAIN -->
+      <main class="main">
+        <div class="inner">
+          <h2>Profile</h2>
+          <p>
+            Senior Full-Stack Engineer with 7+ years building scalable,
+            user-facing applications across fintech and healthcare. Builds and
+            owns products end-to-end from UX collaboration through backend
+            architecture and deployment using React, Vue, Node.js, and
+            cloud-native infrastructure. Proven track record delivering
+            high-impact systems at scale, improving developer velocity, and
+            leading Agile teams as an embedded Scrum Master.
+          </p>
+          <h2>Experience</h2>
+          <div class="job">
+            <div class="job-header">
+              <div class="job-title">
+                Senior Software Engineer, Northwestern Mutual
+              </div>
+            </div>
+            <div class="job-meta">
+              Milwaukee, WI (Remote) | Mar 2021 – Present
+            </div>
+            <div class="bullets">
+              <div class="bullet">
+                Built and launched a full-stack wire transfer platform
+                processing tens of billions of dollars annually for a Fortune
+                100 insurance company
+              </div>
+              <div class="bullet">
+                Owned full-stack features end-to-end, delivering REST APIs and
+                responsive UIs from design through implementation, testing, and
+                deployment
+              </div>
+              <div class="bullet">
+                Reduced deployment lead time by over 30% by implementing
+                zero-touch CI/CD pipelines with automated regression testing
+              </div>
+              <div class="bullet">
+                Designed backend services and data models to support financial
+                transactions at scale with strong consistency and performance
+                requirements
+              </div>
+              <div class="bullet">
+                Led applications through internal and external audits, ensuring
+                compliance with strict security, reliability, and scalability
+                standards
+              </div>
+              <div class="bullet">
+                Drove technical design and Agile delivery as senior engineer and
+                embedded Scrum Master
+              </div>
+              <div class="bullet">
+                Promoted twice from Associate to Senior Engineer in recognition
+                of leadership and impact
+              </div>
+            </div>
+          </div>
+          <div class="job">
+            <div class="job-header">
+              <div class="job-title">
+                Lead Backend Engineer, Tindoori Labs (Contract)
+              </div>
+            </div>
+            <div class="job-meta">
+              Pittsburgh, PA (Remote) | Apr 2022 – Jun 2023
+            </div>
+            <div class="bullets">
+              <div class="bullet">
+                Designed and implemented backend architecture, including data
+                modeling and API design, for a mobile social platform
+              </div>
+              <div class="bullet">
+                Partnered directly with founders to translate product ideas into
+                technical systems and delivery roadmap
+              </div>
+              <div class="bullet">
+                Deployed containerized backend services to AWS and supported
+                launch of the iOS application on the App Store
+              </div>
+            </div>
+          </div>
+          <div class="job">
+            <div class="job-header">
+              <div class="job-title">
+                Software Developer & Implementation Engineer, Epic
+              </div>
+            </div>
+            <div class="job-meta">Madison, WI | Jun 2018 – Mar 2021</div>
+            <div class="bullets">
+              <div class="bullet">
+                Led design, development, and testing as module lead for a
+                user-facing application managing large-scale healthcare system
+                deployments
+              </div>
+              <div class="bullet">
+                Collaborated directly with clinicians, administrators, and
+                cross-functional teams to deliver critical healthcare workflows
+              </div>
+              <div class="bullet">
+                Played a key role in Epic's COVID-19 response, helping design
+                and build the base monitoring dashboard for healthcare
+                organizations nationwide
+              </div>
+              <div class="bullet">
+                Managed coordination for a 20-person team during a large-scale
+                EHR implementation
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
