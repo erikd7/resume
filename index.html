@@ -24,24 +24,24 @@
         --sidebar-width: 3in;
         --body-font: "Montserrat", sans-serif;
         --header-font: Georgia, serif;
+        --header-text: #555555;
         --body-font-size: 12px;
-        --section-heading-font-size: 24px;
+        --section-heading-font-size: 28px;
         --sidebar-name-font-size: 30px;
         --sidebar-subtitle-font-size: 10px;
         --job-title-font-size: 14px;
         --job-meta-font-size: 11px;
-        --bullet-font-size: 10px;
+        --bullet-font-size: 14px;
         --skill-group-header-font-size: 13px;
         --skill-item-font-size: 12px;
-        --skill-bullet-font-size: 11px;
+        --skill-bullet-font-size: 13px;
         --page-background: #e5e7eb;
-        --page-surface: white;
+        --page-surface: white; /*any light color basically becomes white when exportd to PDF */
         --sidebar-bg: #516689;
-        --sidebar-text: white;
-        --sidebar-muted-text: #d1d5db;
+        --sidebar-text: #e5e5e5;
+        --sidebar-muted-text: #d5dae2;
         --sidebar-link-color: #93c5fd;
-        --sidebar-body-text: #e5e7eb;
-        --heading-border-color: #adadad33;
+        --heading-border-color: hsla(0, 10%, 78%, 0.216);
         --main-text-color: #111;
         --meta-text-color: #888888;
         --bullet-character: "○";
@@ -79,17 +79,37 @@
       }
 
       h2 {
+        color: var(--header-text);
         font-family: var(--header-font);
         font-size: var(--section-heading-font-size);
         margin: 16px 0 6px;
-        border-bottom: 1px solid var(--heading-border-color);
-        padding-bottom: 3px;
+        padding-bottom: 4px;
+        border-bottom: 2px solid;
+        letter-spacing: 0.8px;
+      }
+
+      h2,
+      .job {
+        border-bottom: 2px solid;
+        border-image-source: linear-gradient(
+          to right,
+          transparent,
+          color-mix(in srgb, var(--sidebar-bg) 70%, transparent)
+            /*slightly transparent version of sidebar background */
+        );
+        border-image-slice: 1;
       }
 
       /* SIDEBAR */
-      .sidebar {
+      .sidebar,
+      .sidebar h2 {
         background: var(--sidebar-bg);
         color: var(--sidebar-text);
+        border-image-source: linear-gradient(
+          to right,
+          var(--heading-border-color),
+          transparent
+        );
       }
 
       .sidebar h1 {
@@ -103,6 +123,7 @@
       .sidebar .subtitle {
         font-size: var(--sidebar-subtitle-font-size);
         color: var(--sidebar-muted-text);
+        letter-spacing: 0.8px;
         margin-bottom: 18px;
         font-weight: 500;
         text-align: center;
@@ -111,16 +132,13 @@
       .sidebar p,
       .sidebar a {
         margin: 2px 0;
-        color: var(--sidebar-body-text);
+        color: var(--sidebar-text);
         text-decoration: none;
-      }
-
-      .sidebar a {
-        color: var(--sidebar-link-color);
       }
 
       .contact p {
         text-align: center;
+        letter-spacing: 0.5px;
       }
 
       /* MAIN */
@@ -130,7 +148,12 @@
 
       /* JOBS */
       .job {
-        margin-top: 10px;
+        margin-top: 15px;
+        border-bottom: 1px solid;
+      }
+      .job:last-child {
+        margin-bottom: 0;
+        border-bottom: none;
       }
 
       .job-header {
@@ -139,11 +162,19 @@
       }
 
       .job-title {
-        font-weight: 600;
         font-size: var(--job-title-font-size);
       }
 
-      .job-meta {
+      .job-title .position {
+        font-weight: 600;
+      }
+
+      .job-title .organization {
+        font-weight: 300;
+      }
+
+      .job-meta,
+      .job-title .extra {
         font-size: var(--job-meta-font-size);
         color: var(--meta-text-color);
       }
@@ -155,27 +186,29 @@
 
       .bullet {
         position: relative;
-        padding-left: 16px;
+        padding-left: 14px;
         margin-bottom: 4px;
       }
 
       .bullet::before {
         content: var(--bullet-character);
+        color: var(--sidebar-bg);
+        font-weight: 800;
         position: absolute;
         left: 0;
-        top: 0.2em;
+        top: 0em;
         font-size: var(--bullet-font-size);
       }
 
       .inline-divider {
         margin: 0 4px;
-        color: var(--meta-text-color);
+        color: var(--sidebar-bg);
         font-weight: 800;
       }
 
       /* SKILLS */
       .skill-group {
-        margin-top: 6px;
+        margin-top: 10px;
       }
 
       .skill-group .skill-group-header {
@@ -189,19 +222,23 @@
         position: relative;
         padding-left: 14px;
         font-size: var(--skill-item-font-size);
-        margin: 2px 0;
+        line-height: 1.4;
+        margin: 1px 0;
       }
 
       .skill-item::before {
         content: var(--bullet-character);
         position: absolute;
         left: 0;
+        top: -0.1em;
         font-size: var(--skill-bullet-font-size);
       }
 
       a[href] {
         text-decoration: underline;
+        text-underline-offset: 2px;
         color: unset;
+        letter-spacing: 0.3px;
       }
 
       /* PRINT FIXES */
@@ -323,7 +360,9 @@
           <div class="job">
             <div class="job-header">
               <div class="job-title">
-                Senior Software Engineer, Northwestern Mutual
+                <a class="position">Senior Software Engineer</a>
+                <a class="inline-divider">•</a>
+                <a class="organization">Northwestern Mutual</a>
               </div>
             </div>
             <div class="job-meta">
@@ -368,7 +407,10 @@
           <div class="job">
             <div class="job-header">
               <div class="job-title">
-                Lead Backend Engineer, Tindoori Labs (Contract)
+                <a class="position">Lead Backend Engineer</a>
+                <a class="inline-divider">•</a>
+                <a class="organization">Tindoori Labs</a>
+                <a class="extra">(Contract)</a>
               </div>
             </div>
             <div class="job-meta">
@@ -393,7 +435,11 @@
           <div class="job">
             <div class="job-header">
               <div class="job-title">
-                Software Developer & Implementation Engineer, Epic
+                <a class="position"
+                  >Software Developer & Implementation Engineer
+                </a>
+                <a class="inline-divider">•</a>
+                <a class="organization">Epic</a>
               </div>
             </div>
             <div class="job-meta">
