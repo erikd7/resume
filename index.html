@@ -241,6 +241,27 @@
         letter-spacing: 0.3px;
       }
 
+      @media screen and (max-width: 760px) {
+        :root {
+          --bullet-font-size: 8px;
+          --skill-bullet-font-size: 7px;
+          top: 5px;
+        }
+
+        .bullet,
+        .skill-item {
+          padding-left: 10px;
+        }
+
+        .bullet::before {
+          top: 0.55em;
+        }
+
+        .skill-item::before {
+          top: 0.35em;
+        }
+      }
+
       /* PRINT FIXES */
       @media print {
         body {
